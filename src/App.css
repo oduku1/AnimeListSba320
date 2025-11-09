@@ -1,0 +1,169 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav {
+  display: flex;
+  position: fixed;
+  top:0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 15px 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.nav-left a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  transition: color 0.3s ease;
+}
+
+.nav-left a:hover {
+  text-decoration: underline;
+  color: #ff6f61;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-input {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.login-btn {
+  color: white;
+  text-decoration: none;
+  background-color: #ff6f61;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+
+
+.login-btn:hover {
+  background-color: #ff856f;
+}
+
+
+.search-input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #1e1e1e;
+  color: white;
+  width: 200px;
+  transition: border 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #ff4081;
+  outline: none;
+}
+
+/* Dropdown styling */
+.search-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 250px;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #3a3a3a;
+}
+
+.auth-form {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border: 2px solid #333;         
+  border-radius: 10px;             
+  width: 90%;                     
+  max-width: 400px;               
+  height: auto;                   
+  margin: 80px auto;
+  background: linear-gradient(145deg, #1e1e1e, #2a2a2a); /* subtle depth */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* light shadow */
+}
+
+
+.auth-form input{
+  width: 250px;
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+
+}
+
+.auth-form button{
+  width: 80px;
+  height: 40px;
+  background-color: #ff6f61;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.auth-form button:hover{
+  background-color: #ff856f;
+  cursor: pointer;
+}
+
+
+.auth-form a{
+text-decoration: none;
+font-weight: bolder;
+color: #ff6f61;
+transition: color 0.4s ease; 
+
+}
+
+.auth-form a:hover{
+  color:#ff856f;
+  cursor: pointer;
+
+}
