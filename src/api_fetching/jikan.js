@@ -3,7 +3,7 @@
 // Fetch top anime
 export default async function getData() {
     try {
-      const response = await fetch("https://api.jikan.moe/v4/top/anime?type=tv");
+      const response = await fetch("https://api.jikan.moe/v4/seasons/now");
   
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

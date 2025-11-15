@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { searchAnime } from "../api_fetching/jikan";
+import { AuthContext } from "../context/AuthContext";
 
 export default function AnimePage() {
   const { anime } = useParams();
-  const [results, setResults] = useState([]);
+  const {results,setResults} = useContext(AuthContext)
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import bcrypt from "bcrypt"
 import mongoose from "mongoose";
 import cors from "cors";
 import UserModel from "./src/models/Users.js";
+import AnimeModel from "./src/models/Anime.js";
 
 const app = express();
 const saltRounds = 10; 
@@ -56,7 +57,7 @@ connectDB();
 
 
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
@@ -85,7 +86,7 @@ app.post("/login", async (req, res) => {
 });
 
 
-app.post("/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -123,6 +124,49 @@ app.post("/register", async (req, res) => {
   } catch (e) {
     console.error("❌ Registration error:", e);
     res.status(500).json({ error: e.message });
+  }
+});
+
+
+
+app.post("/api/users/:userId/anime", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { title, episodes, image, status, rating, episodesWatched } = req.body;
+
+    const newAnime = new AnimeModel({
+      title,
+      episodes,
+      image,
+      status,
+      rating,
+      episodesWatched,
+      userId
+    });
+
+    await newAnime.save();
+    res.status(201).json(newAnime);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Failed to add anime" });
+  }
+});
+
+app.put("/api/anime/:animeId", async (req, res) => {
+  try {
+    const { animeId } = req.params;
+    const { status, episodesWatched, rating } = req.body;
+
+    const updatedAnime = await AnimeModel.findByIdAndUpdate(
+      animeId,
+      { status, episodesWatched, rating },
+      { new: true }
+    );
+
+    res.json(updatedAnime);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Failed to update anime" });
   }
 });
 

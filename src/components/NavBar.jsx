@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import Search from "./SearchBar";
+import DarkModeToggle from "./DarkModeToggle.jsx";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext.jsx";
 
 export default function NavBar({ onSearch }) {
-  const { loggedIn, setLoggedIn, setUser, user } = useContext(AuthContext);
+  const { loggedIn, setLoggedIn, setUser, user} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -22,6 +23,7 @@ export default function NavBar({ onSearch }) {
       </div>
 
       <div className="nav-right">
+        <DarkModeToggle/>
         <Search onSearch={onSearch} />
         {loggedIn ? (
           <button onClick={handleLogout} className="login-btn">

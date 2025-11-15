@@ -1,39 +1,46 @@
-*{
+/* === RESET & BASE STYLES === */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.main-content{
-  padding-top: 70px;
+body::-webkit-scrollbar-thumb{
+  background:#ff4081;;
+
+
 }
 
+/* Common layout */
+.main-content {
+  padding-top: 50px;
+  position: relative;
+}
+
+/* === NAVBAR === */
 .nav {
   display: flex;
-  position: fixed;
-  top:0;
+  position: sticky;
+  top: 0;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-color: #1a1a1a;
   padding: 15px 30px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  z-index: 1000; 
 }
 
 .nav-left a {
-  color: white;
   text-decoration: none;
   margin-right: 20px;
   transition: color 0.3s ease;
 }
+
 
 .nav-left a:hover {
   text-decoration: underline;
@@ -46,35 +53,10 @@ body {
   gap: 15px;
 }
 
-.search-input {
-  padding: 6px 10px;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-}
-
-.login-btn {
-  color: white;
-  text-decoration: none;
-  background-color: #ff6f61;
-  padding: 6px 12px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-
-
-.login-btn:hover {
-  background-color: #ff856f;
-}
-
-
+/* === SEARCH INPUT === */
 .search-input {
   padding: 8px 10px;
   border-radius: 6px;
-  border: 1px solid #444;
-  background-color: #1e1e1e;
-  color: white;
   width: 200px;
   transition: border 0.2s ease;
 }
@@ -84,16 +66,13 @@ body {
   outline: none;
 }
 
-/* Dropdown styling */
+/* === DROPDOWN === */
 .search-dropdown {
   position: absolute;
   top: 110%;
   left: 0;
   width: 250px;
-  background-color: #2a2a2a;
-  border: 1px solid #444;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   list-style: none;
   padding: 8px 0;
   margin: 0;
@@ -106,7 +85,6 @@ body {
   display: flex;
   align-items: center;
   padding: 6px 10px;
-  color: white;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -115,34 +93,29 @@ body {
   background-color: #3a3a3a;
 }
 
+/* === AUTH FORM === */
 .auth-form {
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
   padding: 20px;
-  border: 2px solid #333;         
-  border-radius: 10px;             
-  width: 90%;                     
-  max-width: 400px;               
-  height: auto;                   
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
   margin: 80px auto;
-  background: linear-gradient(145deg, #1e1e1e, #2a2a2a); /* subtle depth */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* light shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-
-.auth-form input{
+.auth-form input {
   width: 250px;
   height: 30px;
   text-align: center;
   border-radius: 5px;
   border: 1px solid #ccc;
-
 }
 
-.auth-form button{
+.auth-form button {
   width: 80px;
   height: 40px;
   background-color: #ff6f61;
@@ -150,24 +123,180 @@ body {
   border-radius: 5px;
   transition: background-color 0.3s ease;
   color: white;
+  border: none;
+  cursor: pointer;
 }
 
-.auth-form button:hover{
+.auth-form button:hover {
   background-color: #ff856f;
+}
+
+.auth-form a {
+  text-decoration: none;
+  font-weight: bolder;
+  color: #ff6f61;
+  transition: color 0.4s ease;
+}
+
+.auth-form a:hover {
+  color: #ff856f;
+  cursor: pointer;
+}
+
+/* === LIGHT MODE === */
+body.light {
+  background-color: #fff;
+  color: #222;
+}
+
+body.light .nav {
+  background-color: #f0f2f5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light .nav-left a {
+  color: #222;
+}
+
+body.light .search-input {
+  background-color: #f1f1f1;
+  color: #222;
+  border: 1px solid #ccc;
+}
+
+body.light .search-dropdown {
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+body.light .dropdown-item {
+  color: #222;
+}
+
+body.light .auth-form {
+  background: linear-gradient(145deg, #fff, #f2f2f2);
+  color: #222;
+  border: 2px solid #ccc;
+}
+
+body.light .login-btn {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  width: 60px ;
+  height: 25px;
+  border-radius: 5px;
+  transform: background-color 0.3s ease;
+}
+
+body.light .login-btn:hover{
+ background-color:  #ff856f;
+ cursor: pointer;
+
+}
+
+
+/* === DARK MODE === */
+body.dark {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+body.dark .nav {
+  background-color: #252525;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .nav-left a {
+  color: white;
+}
+
+body.dark .search-input {
+  background-color: #1e1e1e;
+  color: white;
+  border: 1px solid #444;
+}
+
+body.dark .search-dropdown {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+}
+
+body.dark .dropdown-item {
+  color: white;
+}
+
+body.dark .auth-form {
+  background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+  color: white;
+  border: 2px solid #333;
+}
+
+body.dark .login-btn {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  width: 60px ;
+  height: 25px;
+  border-radius: 5px;
+  transform: background-color 0.3s ease;
+}
+
+body.dark .login-btn:hover{
+  background-color:  #ff856f;
+  cursor: pointer;
+  
+}
+
+.home-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.add-button{
+  background-color:  #ff6f61;;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+.add-button:hover{
+  background-color:  #f99389;
   cursor: pointer;
 }
 
 
-.auth-form a{
-text-decoration: none;
-font-weight: bolder;
-color: #ff6f61;
-transition: color 0.4s ease; 
+.image-container{
+  position: relative;
+  display: inline-block;
+}
+
+.image-container img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-container button{
+  position: absolute;
+  top: 90%;
+  left:90%;
+  transform: translate(-50%,-50%);
 
 }
 
-.auth-form a:hover{
-  color:#ff856f;
-  cursor: pointer;
+/*=== DISCOVER PAGE ===*/
+
+
+
+.anime-card{
+  position: relative;
+  border-radius: 10px;
 
 }

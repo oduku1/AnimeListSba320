@@ -14,7 +14,7 @@ import SingleAnime from "./pages/SingleAnime.jsx";
 import { searchAnime } from "./api_fetching/jikan.js";
 
 function App() {
-  const { anime, setAnime, loading, setLoading } = useContext(AuthContext);
+  const {  setAnime,  setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 
   async function handleSearch(query) {
@@ -36,8 +36,9 @@ function App() {
       <NavBar onSearch={handleSearch} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/discover" element={<Discover anime={anime} loading={loading} />} />
-        <Route path="/discover/:anime" element={<AnimePage />} />
+        <Route path="/discover" element={<Discover />} /> 
+        <Route path="/discover/:anime" element={<Discover/>} />
+       
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile/:user" element={<Profile />} />

@@ -21,7 +21,7 @@ export default function LoginPage() {
     }
   
     try {
-      const res = await axios.post("http://localhost:3000/login", {
+      const res = await axios.post("http://localhost:3000/api/login", {
         username,
         password,
       });
@@ -76,6 +76,7 @@ export default function LoginPage() {
       />
       <button type="submit">Login</button>
       <p>Dont have an account? <Link to ="/register">Register Here</Link></p>
+      <p>Forgot Password? </p>
     </form>
   );
 }

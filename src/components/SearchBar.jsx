@@ -1,30 +1,36 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { searchAnime } from "../api_fetching/jikan";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Search() {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [fullResults,setFullResults] = useState(null)
   const navigate = useNavigate();
   const containerRef = useRef(null);
 
-  // Debounced search
+  const {results,setResults, queriedAnime} = useContext(AuthContext)
+
   useEffect(() => {
     if (!query.trim()) {
       setResults([]);
+      setShowDropdown(false);
       return;
     }
-
+  
     const delay = setTimeout(async () => {
       const data = await searchAnime(query);
-      setResults(data.slice(0, 6)); // show up to 6 results
+      const sliced = data.slice(0, 6);
+      setResults(sliced);
+      setFullResults(data)
+      queriedAnime.current = sliced; 
       setShowDropdown(true);
     }, 400);
-
+  
     return () => clearTimeout(delay);
   }, [query]);
-
+  
   // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(e) {
@@ -46,6 +52,7 @@ export default function Search() {
   function handleKeyDown(e) {
     if (e.key === "Enter" && query.trim()) {
       e.preventDefault();
+      queriedAnime.current = fullResults
       navigate(`/discover/${encodeURIComponent(query.trim())}`);
       setShowDropdown(false);
       setQuery("");
@@ -64,7 +71,7 @@ export default function Search() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => query && setShowDropdown(true)}
-        onKeyDown={handleKeyDown} // 👈 listens for Enter key
+        onKeyDown={handleKeyDown} 
       />
 
       {showDropdown && results.length > 0 && (
