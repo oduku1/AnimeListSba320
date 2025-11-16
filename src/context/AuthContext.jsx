@@ -12,6 +12,8 @@ export function AuthProvider({ children }) {
   const [results, setResults] = useState([]);
   const queriedAnime = useRef(null)
   const [dark, setDark] = useState(localStorage.getItem("theme") || "light");
+  const [openPopup,setOpenPopup] = useState(false)
+  const [selectedAnime,setSelectedAnime] = useState(null)
 
 
   // Fetch top anime on startup
@@ -67,7 +69,11 @@ export function AuthProvider({ children }) {
     setDark,
     results,
     setResults,
-    queriedAnime
+    queriedAnime,
+    openPopup,
+    setOpenPopup,
+    selectedAnime,
+    setSelectedAnime
   };
 
   return (

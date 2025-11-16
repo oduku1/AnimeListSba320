@@ -293,10 +293,100 @@ body.dark .login-btn:hover{
 
 /*=== DISCOVER PAGE ===*/
 
-
-
-.anime-card{
+/* Wrapper prevents overflow */
+.anime-grid-wrapper {
   position: relative;
-  border-radius: 10px;
+  width: 100%;
+  overflow: hidden;
+}
 
+/* Horizontal scroll (CENTERED + NOT FULL WIDTH) */
+.anime-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 15px;
+
+  /* FIX: keep not full width, but center it */
+  width: 50%;
+  margin: 0 auto;
+
+  scrollbar-width: none;
+}
+
+.anime-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card size */
+.anime-card {
+  flex: 0 0 auto;
+  width: 150px;
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+/* ===================================== */
+/* FADE EDGES — DARK MODE */
+/* ===================================== */
+body.dark .anime-grid-wrapper::before,
+body.dark .anime-grid-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+body.dark .anime-grid-wrapper::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(18,18,18,1),
+    rgba(18,18,18,0)
+  );
+}
+
+body.dark .anime-grid-wrapper::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(18,18,18,1),
+    rgba(18,18,18,0)
+  );
+}
+
+/* ===================================== */
+/* FADE EDGES — LIGHT MODE */
+/* ===================================== */
+body.light .anime-grid-wrapper::before,
+body.light .anime-grid-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+body.light .anime-grid-wrapper::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,1),
+    rgba(255,255,255,0)
+  );
+}
+
+body.light .anime-grid-wrapper::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(255,255,255,1),
+    rgba(255,255,255,0)
+  );
 }

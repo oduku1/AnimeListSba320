@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import UserModel from "./src/models/Users.js";
 import AnimeModel from "./src/models/Anime.js";
+import { CommentModel } from "./src/models/Comments.js";
 
 const app = express();
 const saltRounds = 10; 
